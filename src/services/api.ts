@@ -1,4 +1,5 @@
-export const API_URL = 'http://localhost:8001';
+// Use localhost for dev, relative path for prod (served by backend)
+export const API_URL = import.meta.env.DEV ? 'http://localhost:8001' : '';
 
 export interface PredictionResponse {
     projected_epoch_reward: number;
