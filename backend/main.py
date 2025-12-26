@@ -54,7 +54,12 @@ class ChatInput(BaseModel):
 async def startup_event():
     print("Loading data and training models...")
     try:
-        df = pd.read_csv("pnode_history.csv")
+        # Use absolute path relative to this file
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(base_dir, "pnode_history.csv")
+        print(f"DEBUG: Loading CSV from {csv_path}")
+        
+        df = pd.read_csv(csv_path)
         models["data"] = df
         
         # Train models
